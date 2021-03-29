@@ -1,5 +1,7 @@
 {
   "name": "IMMOBIS",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

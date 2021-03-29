@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <form (ngSubmit)="logForm()">
+    <ion-card>
+      <p>
+        <img src="../../assets/pp.jpg" style="width: 30%; height: 30%; margin-left: 37%; margin-right: 50%;" />
+      </p>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label position="floating">Nom d'utilisateur* :</ion-label>
+          <ion-input [(ngModel)]="demande.login" name="login"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="floating">Mot de passe* :</ion-label>
+          <ion-input [(ngModel)]="demande.password" name="password" type="password"></ion-input>
+        </ion-item>
+        <p>
+          <ion-button (click)="logForm()" size="small"> <strong> Se connecter</strong></ion-button><br>
+          <ion-row>
+            <ion-col width-50 style="text-align: center; color:#7c3325;">
+              <button color="secondary" routerLink="/inscription" ion-button type="submit">
+                S'inscrire
+              </button>
+            </ion-col>
+          </ion-row>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </form>
+
+
+</ion-content>

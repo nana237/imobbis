@@ -1,0 +1,189 @@
+<ion-toolbar color="primary">
+  <ion-buttons  *ngIf="!isSearchbarOpened" slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-title *ngIf="!isSearchbarOpened">IMOBBIS</ion-title>
+  <ion-searchbar  color="primary" showCancelButton = "focus" cancelButtonText = "Custom Cancel" *ngIf="isSearchbarOpened" showCancelButton="true" (ionCancel)="isSearchbarOpened=false" (ionInput)="getItems($event)"></ion-searchbar> 
+  <ion-buttons slot="end">
+    <div ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true" style="margin: 10px;">
+       <ion-icon name="search"></ion-icon>
+    </div>
+    <div *ngIf="!isSearchbarOpened" routerLink="/post"  style="margin: 8px;">
+     <div *ngIf="typeUser != 'Client' && typeUser != 'client'">
+            <ion-icon name="add-circle-outline"></ion-icon>
+        </div>
+   </div>
+ </ion-buttons>
+</ion-toolbar>
+      
+<div *ngIf="!isSearchbarOpened"> 
+  <ion-toolbar>
+    <ion-tabs>
+     <ion-tab-bar slot="top" position="fixed">
+       <ion-tab-button expand="block" routerDirection="root"  routerLink="/studio">
+         <ion-icon name="card"></ion-icon>
+         <ion-label>Studio</ion-label>       
+       </ion-tab-button>   
+       <ion-tab-button  style="color:#dc7e27;" expand="block" routerLink="/appartement">
+         <ion-icon name="grid"></ion-icon>
+         <ion-label>Appartement</ion-label>
+       </ion-tab-button> 
+       <ion-tab-button expand="block" routerLink="/villa" routerDirection="root">
+         <ion-icon name="cube"></ion-icon>
+         <ion-label>Villa</ion-label>
+        <!--<ion-badge color="danger"></ion-badge>   --> 
+       </ion-tab-button>
+       <ion-tab-button expand="block" routerLink="/terrain" routerDirection="root">
+        <ion-icon name="square"></ion-icon>
+        <ion-label>Terrain</ion-label>
+       <!--<ion-badge color="danger"></ion-badge>   --> 
+       </ion-tab-button>  
+       <ion-tab-button expand="block" routerLink="/autre" routerDirection="root">
+        <ion-icon name="happy"></ion-icon>
+        <ion-label>Autres</ion-label>
+       <!--<ion-badge color="danger"></ion-badge>   --> 
+     </ion-tab-button>      
+     </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</div>
+
+  <div *ngIf="!isSearchbarOpened"> 
+    <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="top" position="fixed">
+        <ion-tab-button expand="block"  routerLink="/appartement">
+         
+          <ion-label>Moderne</ion-label>       
+        </ion-tab-button>   
+        <ion-tab-button expand="block">
+          
+          <ion-label style="color:#dc7e27;">Meublé</ion-label>
+        </ion-tab-button>        
+      </ion-tab-bar>
+      </ion-tabs>
+   </ion-toolbar>
+</div>
+
+
+<ion-content>
+
+  <ion-card *ngFor="let affiche of pre">
+    <ion-item lines="none">
+      <h1> {{affiche.type_immobilier.toUpperCase()}} <i *ngIf="affiche.statut != 'vendre'">À LOUER</i><i
+        *ngIf="affiche.statut == 'vendre'">À VENDRE</i></h1>
+      <ion-icon *ngIf="affiche.idUtilisateur == idUser" slot="end" (click)="presentAlertConfirm()" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-item>
+    <ion-item lines="none" (click)="envoyer(affiche)" routerLink="/profil">
+      <!--click page prestataire-->
+      <ion-avatar slot="start">
+        <ion-img src="../../assets/maison/m4.jpg"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2><b>{{affiche.nom}} {{affiche.prenom}}</b></h2>
+        <p>{{affiche.typeUtilisateur}}</p>
+      </ion-label>
+    </ion-item>
+    <!-- <ion-card>       {{affiche.idBienImmobilier}}
+          <ion-img src="../../assets/maison/m4.jpg"></ion-img> 
+          <ion-icon slot="end" name="heart"></ion-icon>
+          <ion-label>Agent immobilier  TATCHUM Ulrich</ion-label>
+         </ion-card>
+            -->
+    <ion-item lines="none" class="tweet">
+      <ion-label text-wrap>{{affiche.description}}</ion-label>
+    </ion-item>
+
+    <!-- Mettre les slider sur photo ici-->
+    <ion-slides pager="true"  (click)="envoyer(affiche)" routerLink="/categorie">
+      <ion-slide *ngFor="let imag of joindreToff(affiche.photo, affiche.idBienImmobilier, images)">
+        <ion-img src="https://blow-corporation.com/imobbis/appImobbisJSON/{{imag}}"></ion-img>
+      </ion-slide>
+     
+    </ion-slides>
+    <ion-item lines="none">
+      <ion-label color="primary">
+        <h2>
+          <ion-icon name="location-outline"></ion-icon><b style="text-align: center;"> {{affiche.ville}}
+            {{affiche.quartier}}</b>
+        </h2>
+      </ion-label>
+      <ion-label style="color: red; font-size: medium;">{{affiche.prixTaxerlocation}} XAF <i *ngIf="affiche.statut != 'vendre'">/ Mois</i><i
+        *ngIf="affiche.statut == 'vendre'"></i>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <!--Boussole-->
+      <ion-button color="secondary" fill="clear" (click)="presentActionSheet(affiche)">
+        <ion-icon slot="start" name="compass"></ion-icon>
+      </ion-button>
+
+      <!--reservation-->
+      <div *ngIf="affiche.idUtilisateur == idUser">
+        <ion-button style="left: 50%;" routerLink="/acceuil" color="secondary" size="small" fill="clear">
+          <ion-badge style="background-color: red;">2</ion-badge>
+        </ion-button>
+      </div>
+
+      <div *ngIf="affiche.idUtilisateur != idUser">
+        <ion-button style="left: 50%;" routerLink="/tchat" color="secondary" size="small" fill="clear">
+          <ion-label> <i *ngIf="affiche.statut != 'vendre'">Réserver</i><i
+            *ngIf="affiche.statut == 'vendre'">Acheter</i></ion-label>
+        </ion-button>
+  
+      </div>
+
+      <!--commentaire--> 
+                    
+      <ion-icon color='secondary' routerLink="/commentaire"  slot="end" name="chatbubbles"></ion-icon>  
+     
+      <!--like-->
+      <ion-icon slot="end" name="heart"></ion-icon>
+
+      <!--suivre-->
+      <ion-icon slot="end" name="notifications"></ion-icon>
+
+    </ion-item>
+
+    <!-- appartement ou villa ou studio  -->
+    <div *ngIf="affiche.type_immobilier == 'appartement' || affiche.type_immobilier == 'villa' || affiche.type_immobilier == 'studio'">
+      <ion-item lines="none">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label><div *ngIf="affiche.nbChambre == 0 || affiche.nbChambre == 1 ">{{affiche.nbChambre}} chambre</div><div *ngIf="affiche.nbChambre != 0 && affiche.nbChambre != 1 ">{{affiche.nbChambre}} chambres</div></ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label><div *ngIf="affiche.nbSalon == 0 || affiche.nbSalon == 1 ">{{affiche.nbSalon}} Salon</div><div *ngIf="affiche.nbSalon != 0 && affiche.nbSalon != 1 ">{{affiche.nbSalon}} Salons</div></ion-label>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="ion-align-self-start">
+              <ion-label><div *ngIf="affiche.nbDouche == 0 || affiche.nbDouche == 1 ">{{affiche.nbDouche}} Douche</div> <div *ngIf="affiche.nbDouche != 1 && affiche.nbDouche != 0">{{affiche.nbDouche}} Douches</div></ion-label>
+            </ion-col>
+            <ion-col class="ion-align-self-center">
+              <ion-label> <div *ngIf="affiche.nbCuisine == 0 || affiche.nbCuisine == 1 ">{{affiche.nbCuisine}} Cuisine</div><div *ngIf="affiche.nbCuisine != 0 && affiche.nbCuisine != 1 ">{{affiche.nbCuisine}} Cuisines</div></ion-label>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-align-items-start">
+            <ion-col>
+              
+            </ion-col>
+            <ion-col>
+              <ion-label>{{affiche.parking}} Parking</ion-label>
+            </ion-col>
+            <ion-col>
+              
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-item>
+    </div>
+ 
+
+ </ion-card>
+</ion-content>

@@ -1,0 +1,209 @@
+<ion-header style="background-color: #f09b12;">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="folder/Inbox" text="Publier" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item position="stacked">
+    <ion-row>
+      <ion-col width-50 style="text-align: center; color: #f09b12;">
+        Publier vos articles sur IMOBBIS
+      </ion-col>
+    </ion-row>
+  </ion-item>
+
+  <form (ngSubmit)="logForm()">
+    <ion-item lines="none">
+      <ion-label>Type bien immobiliér:</ion-label>
+      <ion-select [(ngModel)]="demande.type_immobilier" name="type_immobilier">
+        <ion-select-option value="maison">Maison</ion-select-option>
+        <ion-select-option value="appartement">Appartement</ion-select-option>
+        <ion-select-option value="Studio">Studio</ion-select-option>
+        <ion-select-option value="Chambre">Chambre</ion-select-option>
+        <ion-select-option value="bureau">Bureau</ion-select-option>
+        <ion-select-option value="villa">Villa</ion-select-option>
+        <ion-select-option value="magasin">Magasin</ion-select-option>
+        <ion-select-option value="boutique">Boutique</ion-select-option>
+        <ion-select-option value="terrain">Terrain</ion-select-option>
+        <ion-select-option value="autres">Autres</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item
+      *ngIf="demande.type_immobilier != 'boutique' && demande.type_immobilier != 'terrain' && demande.type_immobilier != '' && demande.type_immobilier != 'magasin'"
+      lines="none">
+      <ion-label>Meublé ou non meublé:</ion-label>
+      <ion-select placeholder="Meublé ou non Meublé" [(ngModel)]="demande.meubler" name="meubler">
+        <ion-select-option value="0">Moderne</ion-select-option>
+        <ion-select-option value="1">Meublé</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>Vendre ou Louer:</ion-label>
+      <ion-select [(ngModel)]="demande.statut" name="statut" value="0" okText="Okay" cancelText="Annuler">
+        <ion-select-option value="vendre">A vendre</ion-select-option>
+        <ion-select-option value="Louer">A Louer</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item lines="none" *ngIf="demande.type_immobilier == 'terrain'">
+      <ion-input name="dimension_terrain" placeholder="Dimenion du terrain" [(ngModel)]="demande.dimension_terrain">
+      </ion-input>
+    </ion-item>
+
+
+    <div
+      *ngIf="demande.type_immobilier != 'boutique' && demande.type_immobilier != 'terrain' && demande.type_immobilier != '' && demande.type_immobilier != 'bureau' && demande.type_immobilier != 'magasin' && demande.type_immobilier != 'autres'">
+      <ion-note style="text-align: center;" color="primary">Les caracteristiques de votre demeure.</ion-note>
+      <ion-item lines="none" *ngIf="demande.type_immobilier !='Chambre'">
+        <ion-label>Nombre de salon:</ion-label>
+        <ion-select [(ngModel)]="demande.nbSalon" name="nbSalon" value="0" okText="Okay" cancelText="Annuler">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="demande.type_immobilier !='Chambre'">
+        <ion-label>Nombre de chambre:</ion-label>
+        <ion-select [(ngModel)]="demande.nbChambre" name="nbChambre" value="0" okText="Okay" cancelText="Annuler">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option value="5">5</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Nombre de cuisine:</ion-label>
+        <ion-select [(ngModel)]="demande.nbCuisine" name="nbSalon" value="0" okText="Okay" cancelText="Annuler">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Nombre de douche:</ion-label>
+        <ion-select [(ngModel)]="demande.nbDouche" name="nbDouche" value="0" okText="Okay" cancelText="Annuler">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Nombre de parking:</ion-label>
+        <ion-select [(ngModel)]="demande.parking" name="parking" value="0" okText="Okay" cancelText="Annuler">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="2">3</ion-select-option>
+          <ion-select-option value="3">4</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </div>
+    <ion-input name="ville" placeholder="Ville " [(ngModel)]="demande.ville"></ion-input>
+    <ion-input name="quartier" placeholder="Quartier" [(ngModel)]="demande.quartier"></ion-input>
+    <div *ngIf="demande.type_immobilier != 'terrain'">
+      <ion-input name="prixTaxerlocation" type="number" placeholder="prix" [(ngModel)]="demande.prixTaxerlocation">
+      </ion-input>
+    </div>
+
+    <div *ngIf="demande.type_immobilier == 'terrain'">
+      <ion-input name="prixTaxerlocation" type="number" placeholder="prix du m²"
+        [(ngModel)]="demande.prixTaxerlocation"></ion-input>
+    </div>
+
+    <ion-textarea name="description" placeholder="Une description en quelques mots de l'article"
+      [(ngModel)]="demande.description"></ion-textarea>
+
+
+    <div *ngIf="this.plt.is('mobileweb')">
+      <!--  <ion-button slot="end" style="text-align: center;" color="primary" round (click)="presentModal()">
+      </ion-button>  changeListener($event) -->
+      <ion-label>choisir une video</ion-label>
+      <input type="file" (change)="onVideoChanged($event)" multiple>
+
+
+      <ion-label>choisir une photo</ion-label>
+      <ion-input type="file" accept="image/*" multiple (change)="onFileChanged($event)"></ion-input>
+
+      <ion-item lines="none" *ngFor="let imag of fil">
+
+        <ion-list (mousedown)="remove(imag)">
+          <ion-note> {{imag.name}} </ion-note>
+          <!--  
+           <ion-img src={URL.createObjectURL(imag)}></ion-img>
+
+           <img [src]="URL.createObjectURL(imag)"/> 
+          -->
+        </ion-list>
+
+      </ion-item>
+
+     
+  
+    </div>
+
+    <div *ngIf="this.plt.is('cordova')">
+
+      <ion-button slot="end" style="text-align: center;" color="primary" round (click)="upload()">
+        <ion-label>Des photos</ion-label>
+        <ion-icon slot="end" name="attach"></ion-icon>
+      </ion-button>
+
+      <!--stard Fonctionne-->
+      <ion-button (click)="addPhoto('library')" color="primary" expand="block">
+        <ion-icon name="image" slot="start"></ion-icon>
+        Ouvrir la bibliothèque
+      </ion-button>
+
+      <ion-button (click)="addPhoto('camera')" color="secondary" expand="block">
+        <ion-icon name="camera" slot="start"></ion-icon>
+        Prendre une photo
+      </ion-button>
+      <!--end Fonctionne-->
+
+      <div class="flex">
+        <div class="img-box">
+          <div *ngFor="let imag of image">
+            <ion-list (mousedown)="remove(imag)">
+              <img [src]="imag" />
+            </ion-list>
+          </div>
+        </div>
+      </div>
+
+      <ion-button color="secondary" (click)="pickMultipleImages()">Pick Multiple Images
+      </ion-button>
+      <ion-list *ngFor="let imag of images">
+        <ion-item>
+          <img [src]="imag" />
+        </ion-item>
+      </ion-list>
+
+    </div>
+
+
+    <ion-row>
+      <ion-col width-50 style="text-align: center;">
+        <ion-button ion-button (click)="onUploadData2()" style="text-align: center;" color="primary">
+          Valider
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+
+
+</ion-content>

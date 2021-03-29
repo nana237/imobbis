@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons>
+      
+      <ion-button (click)="close()">
+        <ion-icon slot="end" name="close"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+ 
+
+  <h1>Prendre les photos pour poster une à une</h1>
+  <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+
+  <div *ngFor="let imag of tab">
+    <ion-list (mousedown)="remove(imag)">
+      {{imag.name}}
+      <ion-img src="imag.name"></ion-img>
+      <img [src]="imag.name"/>
+    </ion-list>
+  </div>
+</ion-content>

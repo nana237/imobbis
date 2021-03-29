@@ -1,0 +1,29 @@
+<ion-header> 
+<ion-toolbar color="primary">
+
+  <ion-buttons *ngIf="!isSearchbarOpened" slot="start">
+    <ion-back-button defaultHref="folder/Inbox" text="High-Tech"  icon="arrow-back"></ion-back-button>
+  </ion-buttons>
+
+  <ion-searchbar  color="primary" showCancelButton = "focus" cancelButtonText = "Custom Cancel" *ngIf="isSearchbarOpened" showCancelButton="true" (ionCancel)="isSearchbarOpened=false"></ion-searchbar>
+  
+  <ion-buttons slot="end">
+     <div ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+        <ion-icon name="search"></ion-icon>
+     </div>
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card>
+  
+    <ion-img src="../../assets/maison/m3.jpg"></ion-img> 
+    <ion-item lines="none">
+     <ion-label>
+       <h1><b style="text-align: center; color:  #dc7e27;">High-Tech</b></h1>
+     </ion-label>
+   </ion-item>
+ </ion-card>
+  
+</ion-content>
