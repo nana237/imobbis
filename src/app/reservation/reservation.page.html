@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons  *ngIf="!isSearchbarOpened" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="!isSearchbarOpened">IMOBBIS</ion-title>
+    <ion-searchbar  color="primary" showCancelButton = "focus" cancelButtonText = "Custom Cancel" *ngIf="isSearchbarOpened" showCancelButton="true" (ionCancel)="isSearchbarOpened=false"></ion-searchbar> 
+    <ion-buttons slot="end">
+      <div ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true" style="margin: 10px;">
+         <ion-icon name="search"></ion-icon>
+      </div>
+      <div *ngIf="!isSearchbarOpened" routerLink="/post"  style="margin: 8px;">
+       <div *ngIf="typeUser != 'Client' && typeUser != 'client'">
+              <ion-icon name="add-circle-outline"></ion-icon>
+          </div>
+     </div>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item (click)="envoyer(idSecondUser)" detail *ngFor="let idSecondUser of NbreReservation(initial)" routerLink="/reservation-in">
+    <ion-avatar slot="start" >
+      <img src="../../assets/maison/m4.jpg">
+    </ion-avatar>
+    <ion-label>
+      <div class="flex_box">
+        <h3>{{infoUser(users, idSecondUser)}}</h3>
+        <ion-note slot="end">{{recentlyMessage(initial, idSecondUser).date_heure | date:'short'}}</ion-note>
+      </div>
+      <p text-wrap>{{recentlyMessage(initial, idSecondUser).texte}}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>

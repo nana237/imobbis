@@ -1,0 +1,33 @@
+<ion-header style="background-color: #f09b12;">
+  <ion-toolbar color="primary">
+  
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="folder/Inbox" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title *ngIf="!isSearchbarOpened"><i *ngIf="sentData.statut != 'vendre'">Réserver</i><i
+      *ngIf="sentData.statut == 'vendre'">Acheter</i> {{sentData.type_immobilier}} à {{sentData.ville}} {{sentData.quartier}}<br></ion-title>
+    <ion-searchbar showCancelButton = "focus" cancelButtonText = "Custom Cancel" *ngIf="isSearchbarOpened" showCancelButton="true" (ionCancel)="isSearchbarOpened=false"></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+  <ion-item detail *ngFor="let idSecondUser of NbreReservation(initial)" (click)="envoyer(sentData, idSecondUser)" routerLink="/tchat-p">
+    <ion-avatar slot="start" >
+      <img src="../../assets/maison/m4.jpg">
+    </ion-avatar>
+    <ion-label>
+      <div class="flex_box">
+        <h3>{{infoUser(users, idSecondUser)}}</h3>
+        <ion-note slot="end">{{recentlyMessage(initial, idSecondUser).date_heure | date:'short'}}</ion-note>
+      </div>
+      <p text-wrap>{{recentlyMessage(initial, idSecondUser).texte}}</p>
+    </ion-label>
+  </ion-item>
+
+
+     
+  
+</ion-content>

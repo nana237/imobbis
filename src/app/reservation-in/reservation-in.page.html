@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="folder/Inbox" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>{{infoUser(users, sentData) }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+ 
+  <ion-grid>
+    <ion-row *ngFor="let message of pre">
+       <ion-col size="9" *ngIf="idUser !== message.idExpediteur && idUser == message.idRecespteur" class="message other-message">
+          <b>{{infoUser(users, message.idExpediteur) }}</b><br>
+          <span>{{message.texte}}</span>
+          <div class="time" text-right><br>
+              {{message.date_heure | date:'short'}}
+          </div>
+       </ion-col>
+
+       <ion-col offset="3" size="9" *ngIf="idUser == message.idExpediteur && idUser != message.idRecespteur" class="message my-message">
+        <b>{{infoUser(users,message.idExpediteur)}}</b><br>
+        <span>{{message.texte}}</span>
+        <div class="time" text-right><br>
+            {{message.date_heure | date:'short'}}
+        </div>
+     </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-row align-items-center no-padding>
+      <ion-col size="10">
+            <textarea clear-input autocorrect autofocus placeholder="Taper un message" class="message-input" autosize maxRows="5" [(ngModel)]="newMsg"></textarea>
+      </ion-col>
+      
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="secondary" [disabled]="newMsg === ''" class="msg-btn"
+        (click)="sendMessage()">
+        <ion-icon name="send" slot="end"></ion-icon>    
+      </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
