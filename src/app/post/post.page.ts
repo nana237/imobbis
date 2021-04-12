@@ -310,11 +310,12 @@ export class PostPage implements OnInit {
           if (key=="video") {
 
            
-           
+           if (val) {
             for (let i = 0; i < val.length; i++) {
               const video = val[i];
               uploadData.append('myVideo'+i, video, video.name);
             }
+           }
           }else{
           
             

@@ -211,6 +211,10 @@ export class FolderPage implements OnInit {
 
   }
 
+  liker(){
+    console.log("j'ai liker")
+  }
+
    joindreToff ( image:any, id : any, imagess:any []){
 
     var tab = [];

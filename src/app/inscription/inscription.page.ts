@@ -104,6 +104,8 @@ connexion = {
       this.take_.Seconnecter(upload).subscribe((data: any) => {    
     
         console.log(data);
+        console.log('data[0]');
+        console.log(data[0]);
         console.log('la');
         localStorage.clear();                   
         localStorage.removeItem("idUser");
