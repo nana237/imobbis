@@ -1,0 +1,129 @@
+<ion-content>
+  <div class="thebody">
+
+      <div class="mytoolbar">
+        <ion-buttons slot="start">
+        <ion-back-button defaultHref="compte" icon="arrow-back"></ion-back-button>
+        </ion-buttons>
+        <ion-title>DEVENIR PRESTATAIRE</ion-title>
+    </div>
+ 
+  
+    <p class="contentLogo">
+      <img src="../../assets/pp.jpg" class="logoimo" />
+    </p>
+    <form *ngIf="formDevenirPrestataire">
+      
+        
+        <div *ngIf="step1" class="blockContent">
+          <h2 class="titreH2">informations basiques</h2>
+
+          <div class="inputContent">
+            <ion-label >Pays</ion-label>
+            <ion-input class="champText" [(ngModel)]="demande.pays" placeholder="pays" readonly name="pays" ></ion-input>
+          </div>
+  
+          <div class="inputContent">
+            <ion-label>Nom d'utilisateur</ion-label>
+            <ion-input class="champText" [(ngModel)]="demande.login" readonly name="login" ></ion-input>
+          </div>
+  
+  
+          <div class="inputContent">
+            <ion-label>Téléphone</ion-label>
+            <ion-input class="champText"  type="text" [(ngModel)]="demande.tel" readonly name="tel" ></ion-input>
+          </div>
+          
+          <button class="btnprevnext" (click)="step1=false; step2=true">suivant</button>
+        </div>
+  
+        <div *ngIf="step2" class="blockContent">
+          <h2 class="titreH2">definissez quel type de prestataire vous êtes</h2>
+          <div class="espaceV"></div>
+          <div>
+            <ion-label position="floating">Type :</ion-label>
+            <ion-select class="champSelect" [(ngModel)]="demande.typeUtilisateur" name="typeUtilisateur">
+              <ion-select-option value="Bailleur">Bailleur</ion-select-option>
+              <ion-select-option value="Agent Immobilier">Agent immobilier</ion-select-option>
+              <ion-select-option text-wrap value="Agence Immobilière">Agence immobilière</ion-select-option>
+            </ion-select>
+          </div>
+  
+          <div *ngIf="demande.typeUtilisateur == 'Agence Immobilière'">
+            <div>
+              <ion-label position="floating">Nom de l'agence* :</ion-label>
+              <ion-input class="champText" [(ngModel)]="demande.nomAgenceImo" name="nomAgenceImo">
+              </ion-input>
+            </div>
+          </div>
+          <button class="btnprevnext" (click)="step1=true; step2=false">precedent</button>
+          <button class="btnprevnext" (click)="step2=false; step3=true">suivant</button>
+        </div>
+  
+        <div *ngIf="step3" class="blockContent">
+          <h2 class="titreH2">informations avancées</h2>
+          <div>
+            <ion-label  position="floating">Nom* :</ion-label>
+            <ion-input class="champText" class="champText" aria-placeholder="" [(ngModel)]="demande.nom" name="nom"></ion-input>
+          </div>
+  
+          <div>
+            <ion-label position="floating">Prénom* :</ion-label>  
+            <ion-input class="champText" aria-placeholder="" [(ngModel)]="demande.prenom" name="prenom">
+            </ion-input>
+          </div>
+  
+          <div>
+            <ion-label position="floating">E-mail* :</ion-label>  
+            <ion-input class="champText" type="email" [(ngModel)]="demande.email" name="email"></ion-input>
+          </div>
+  
+          <button class="btnprevnext" (click)="step2=true; step3=false">precedent</button>
+          <button class="btnprevnext" (click)="step3=false; step4=true">suivant</button>
+        </div>
+  
+          
+        <div *ngIf="step4" class="blockContent">
+          <h2 class="titreH2">autres informations</h2>
+          <div>
+            <ion-label position="floating">Genre :</ion-label>
+            <ion-select class="champText" [(ngModel)]="demande.sexe" name="sexe">
+              <ion-select-option value="m">Masculin</ion-select-option>
+              <ion-select-option value="f">Féminin</ion-select-option>
+            </ion-select>
+          </div>
+  
+          <div>
+            <ion-label position="floating">Année de naissance</ion-label>        
+            <ion-datetime class="champText" [(ngModel)]="demande.dateNaiss" slot="center" name="dateNaiss" displayFormat="MM/DD/YYYY"></ion-datetime>
+          </div>
+  
+          <button class="btnprevnext" (click)="step3=true; step4=false">precedent</button>
+          <p>
+                <button class="btnvalider" (click)="verifierForm()">Devenir Prestataire</button><br>
+          </p>
+        </div>
+  
+          
+    </form>
+  
+    <form *ngIf="formVerifPassword" class="blockContent">
+      <h2 class="titreH2">Vérification de sécurité</h2>
+      <div class="espaceV"></div>
+      <div>
+        <ion-label position="floating">Nom d'utilisateur*</ion-label>
+        <ion-input class="champText" [(ngModel)]="infoConnect.login" readonly name="login" ></ion-input>
+      </div>
+  
+      <div>
+        <ion-label position="floating">Mot de Passe*</ion-label>
+        <ion-input class="champText" [(ngModel)]="infoConnect.password" name="password" type="password" ></ion-input>
+      </div>
+  
+      <button class="btnprevnext" (click)="toggleForms()">retour</button>
+      <p>
+            <button class="btnvalider" (click)="verifierPassword()" size="small"> <strong> Valider</strong></button><br>
+      </p>
+    </form>
+  </div>
+</ion-content>

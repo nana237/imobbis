@@ -1,0 +1,128 @@
+.titreH2{
+    margin-top: 1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+.contentLogo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logoimo{
+    width: 30%;
+    height: 30%;
+    border-radius: 35% 35% 35% 35%;
+}
+
+.champText{
+    border: none;
+    background-color: white;
+    border-radius: 2em 2em 2em 2em;
+    height: 3em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    box-shadow: 5px 5px 2px  #bdbcbb27;
+    padding-right: 1em;
+    padding-left: 1em;
+    text-align: start;
+    font-weight: bold;
+    color: #707070;
+
+    &:focus{
+        border:none;
+    }
+
+    &::placeholder{
+        transform: translateX(1em);
+        color: #d4d6d5;
+    }
+}
+
+.thebody{
+    height: 100vh;
+    // background: linear-gradient(180deg, #fbc32f, #fcb82c, #fcac2c, #fba12c, #fa962e, #f88a30, #f57f33, #f27436);
+    background: linear-gradient(180deg, #fbb531, #f7ad2f, #f3a52d, #ef9d2b, #ea952a, #e68d29, #e18628, #dc7e27);
+}
+
+
+.mytoolbar{
+    display: flex;
+}
+
+.blockContent{
+    margin: 10px;
+    margin-top: 1em;
+}
+
+.inputContent{
+    margin-top: 1em;
+}
+
+.btnprevnext{
+    border: none;
+    background-color: rgb(58, 58, 58);
+    border-radius: 2em 2em 2em 2em;
+    height: 2.5em;
+    width: 100%;
+    margin-top: 2em;
+    box-shadow: 5px 5px 2px  #bdbcbb27;
+    padding-right: 1em;
+    padding-left: 1em;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1em;
+
+    &:focus{
+        border:none;
+        outline: none;
+    }
+
+}
+
+.champSelect{
+    border: none;
+    background-color: white;
+    border-radius: 2em 2em 2em 2em;
+    height: 3em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    box-shadow: 5px 5px 2px  #bdbcbb27;
+    padding-right: 1em;
+    padding-left: 1em;
+    text-align: start;
+    font-weight: bold;
+    color: #707070;
+
+    &:focus{
+        border:none;
+    }
+
+}
+
+.espaceV{
+    height: 2em;
+}
+
+.btnvalider{
+    border: none;
+    background-color: rgb(250, 154, 9);
+    border-radius: 2em 2em 2em 2em;
+    height: 3em;
+    width: 100%;
+    margin-top: 2em;
+    box-shadow: 5px 5px 2px  #bdbcbb27;
+    padding-right: 1em;
+    padding-left: 1em;
+    text-align: center;
+    font-weight: bold;
+    color: #191919;
+    font-size: 1em;
+
+    &:focus{
+        border:none;
+        outline: none;
+    }
+
+}

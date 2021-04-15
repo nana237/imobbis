@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { ServicesService } from '../services.service';
-import { Prestataire } from '../prestataire';
+import { ServicesService } from '../../services.service';
+import { Prestataire } from '../../prestataire';
 import { HttpClient } from '@angular/common/http';
-import { FormArray, FormGroup } from '@angular/forms';
-import { DevenirPrestatairePage } from '../utilisateur/devenir-prestataire/devenir-prestataire.page';
+
 @Component({
-  selector: 'app-compte',
-  templateUrl: './compte.page.html',
-  styleUrls: ['./compte.page.scss'],
+  selector: 'app-inscription-prestataire',
+  templateUrl: './inscription-prestataire.page.html',
+  styleUrls: ['./inscription-prestataire.page.scss'],
 })
-export class ComptePage implements OnInit {
+export class InscriptionPrestatairePage implements OnInit {
   public isSearchbarOpened : boolean = false;
   
 
@@ -39,7 +38,6 @@ export class ComptePage implements OnInit {
 
 };
 
-
 connexion = {
 
   login: '',
@@ -50,33 +48,21 @@ connexion = {
     private router:Router,
     private menu: MenuController,
     private http:HttpClient,
-    private take_: ServicesService,
-
-    ) {
-      
-    }
-
+    private take_: ServicesService,) { }
 
     contry:any[];
 
   ngOnInit() {
-
-  this.take_.getAllcontries().subscribe((data: Prestataire[]) => {    
-   this.contry = data;
-   console.log(this.contry)
-   },
-   error => {
-     alert("Mauvaise connexion!!!");
-   }
-   );
-    this.menu.swipeGesture(false) 
-
+    this.take_.getAllcontries().subscribe((data: Prestataire[]) => {    
+      this.contry = data;
+      console.log(this.contry)
+      },
+      error => {
+        alert("Mauvaise connexion!!!");
+      }
+      );
+       this.menu.swipeGesture(false) 
   }
-  
-  DevenirPrestatairePage(){
-    this.router.navigate(['devenir-prestataire'])
-  }
-
 
   logForm(){
    
@@ -124,8 +110,6 @@ connexion = {
   
       });
 
-     
-
     });
 
     
@@ -135,6 +119,5 @@ connexion = {
   }
   
 }
-  
 
 }

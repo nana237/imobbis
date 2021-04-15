@@ -19,6 +19,31 @@ export class ServicesService {
     this.dataSource.next(data);
  
   }
+
+  getInfoUser(){
+    let infoUser = {
+      idUtilisateur:localStorage.getItem("idUser"),
+      typeUtilisateur:localStorage.getItem("typeUser"),
+      login:localStorage.getItem("loginUser"),
+      email:localStorage.getItem("emailUser"),
+      tel:localStorage.getItem("telUser"),
+      pays:localStorage.getItem("paysUser")
+    }
+    return infoUser
+  }
+
+  setInfoUser(data){
+                       
+    localStorage.removeItem("idUser");
+    localStorage.setItem("idUser", data.idUtilisateur);
+    localStorage.setItem("typeUser", data.typeUtilisateur);
+    localStorage.setItem("loginUser", data.login);
+    localStorage.setItem("emailUser", data.email); 
+    localStorage.setItem("telUser", data.tel);    
+    localStorage.setItem("paysUser", data.pays);    
+    return 0
+  }
+
  //https://blow-corporation.com/imobbis/appImobbisJSON/compte/creerCompte
 
   //https://blow-corporation.com/imobbis/appImobbisJSON/poste/poster
@@ -47,6 +72,15 @@ Seconnecter(data : any){
 CreerCompte(data : any){
 
   return this.http.post("https://blow-corporation.com/imobbis/appImobbisJSON/compte/creerCompte", data, {
+    reportProgress:true,
+    observe:'events'
+  });
+
+}
+
+ModifierCompte(data : any){
+
+  return this.http.post("https://blow-corporation.com/imobbis/appImobbisJSON/compte/modifierCompte", data, {
     reportProgress:true,
     observe:'events'
   });

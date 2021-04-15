@@ -138,8 +138,9 @@ connexion = {
       localStorage.setItem("idUser", data[0].idUtilisateur);
       localStorage.setItem("typeUser", data[0].typeUtilisateur);
       localStorage.setItem("loginUser", data[0].login);
-      localStorage.setItem("emailUser", data[0].email); 
-      localStorage.setItem("telUser", data[0].tel);      
+      localStorage.setItem("emailUser", data[0].email);
+      localStorage.setItem("telUser", data[0].tel);
+      localStorage.setItem("paysUser", data[0].pays);
       this.router.navigate(['folder/1']); 
 
     });  

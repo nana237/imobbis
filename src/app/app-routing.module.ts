@@ -100,7 +100,15 @@ const routes: Routes = [
   {
     path: 'reservation-in',
     loadChildren: () => import('./reservation-in/reservation-in.module').then( m => m.ReservationInPageModule)
+  },  {
+    path: 'devenir-prestataire',
+    loadChildren: () => import('./utilisateur/devenir-prestataire/devenir-prestataire.module').then( m => m.DevenirPrestatairePageModule)
+  },
+  {
+    path: 'inscription-prestataire',
+    loadChildren: () => import('./utilisateur/inscription-prestataire/inscription-prestataire.module').then( m => m.InscriptionPrestatairePageModule)
   }
+
 ];
 
 
