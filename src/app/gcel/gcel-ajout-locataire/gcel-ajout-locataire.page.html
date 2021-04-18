@@ -1,0 +1,172 @@
+<ion-content class="ajout-loc">
+  <div>
+
+    <div class="mytoolbar">
+      <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard" icon="arrow-back"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Nouveau locataire</ion-title>
+  </div>
+
+
+  <p class="contentLogo">
+    <img src="../../assets/pp.jpg" class="logoimo" />
+  </p>
+  <form *ngIf="formAjoutLocataire">
+    
+      
+      <div *ngIf="step1" class="blockContent">
+        <h2 class="titreH2">INFORMATION SUR LE LOCATAIRE</h2>
+
+        <!-- <div class="inputContent">
+          <ion-label >idLocataire</ion-label>
+          <ion-input class="champText" [(ngModel)]="locataire.idLocataire"  placeholder="idLocataire" readonly name="idLocataire" ></ion-input>
+        </div> -->
+
+        <div class="inputContent">
+          <ion-label>Nom du locataire*</ion-label>
+          <ion-input class="champText" [(ngModel)]="locataire.nom"  name="nom" ></ion-input>
+        </div>
+
+
+        <div class="inputContent">
+          <ion-label>Prénom du locataire*</ion-label>
+          <ion-input class="champText"  type="text" [(ngModel)]="locataire.prenom"   name="prenom" ></ion-input>
+        </div>
+        
+        
+        <div class="inputContent">
+          <ion-label position="floating">Numero De Téléphone*</ion-label>  
+          <div class="selectPays">
+          <div> 
+              <ion-select interface="action-sheet" class="champTel selectcode"  [(ngModel)]="numTel.code" name="code">
+                <div *ngFor="let pay of country"> 
+                  <ion-select-option value="+{{pay.callingCodes[0]}}">+{{pay.callingCodes[0]}} {{pay.name}}</ion-select-option>
+                
+                </div>
+              </ion-select>
+            </div>
+    
+            <div> 
+              <ion-input class="champTel" [(ngModel)]="numTel.tel" placeholder="tel"  name="tel">
+              </ion-input>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btnprevnext" (click)="step1=false; step2=true">suivant</button>
+      </div>
+
+      <div *ngIf="step2" class="blockContent">
+        <h2 class="titreH2">autre info</h2>
+        <div class="espaceV"></div>
+
+        <div>
+          <ion-label  position="floating">Numero de CNI*</ion-label>
+          <ion-input class="champText" [(ngModel)]="locataire.numCNI" class="champText" placeholder="numCNI"  name="numCNI"></ion-input>
+        </div>
+        <div>
+          <ion-label position="floating">nationalite</ion-label>  
+          <ion-select interface="action-sheet" class="champText"  [(ngModel)]="locataire.nationalite" name="nationalite">
+            <div *ngFor="let pay of country"> 
+              <ion-select-option value="{{pay.alpha3Code}}">{{pay.name}}</ion-select-option>
+            
+            </div>
+          </ion-select>
+          <!-- <ion-input class="champText" [(ngModel)]="locataire.nationalite" type="text" name="nationalite"></ion-input> -->
+        </div>
+
+        <!-- <div *ngIf="false">
+          <div>
+            <ion-label position="floating">Nom de l'agence* :</ion-label>
+            <ion-input class="champText"  name="nomAgenceImo">
+            </ion-input>
+          </div>
+        </div> -->
+        <button class="btnprevnext" (click)="step1=true; step2=false">precedent</button>
+        <button class="btnprevnext" (click)="step2=false; step3=true">suivant</button>
+      </div>
+
+      <div *ngIf="step3" class="blockContent">
+        <h2 class="titreH2">informations avancées</h2>
+        <div class="espaceV"></div>
+        <div>
+          <ion-label position="floating">situation Matrimonial</ion-label>
+          <ion-select class="champSelect" interface="action-sheet" [(ngModel)]="locataire.situationMatrimonial" name="situationMatrimonial">
+            <ion-select-option value="Célibataire">Célibataire</ion-select-option>
+            <ion-select-option value="Marié(e)">Marié(e)</ion-select-option>
+            <ion-select-option text-wrap value="veuf(ve)">veuf(ve)</ion-select-option>
+            <ion-select-option text-wrap value="divorcé(e)">divorcé(e)</ion-select-option>
+          </ion-select>
+        </div>
+
+        <div>
+          <ion-label position="floating">ville</ion-label>
+          <ion-input class="champText" [(ngModel)]="locataire.ville"  name="ville" placeholder="ville">
+          </ion-input>
+        </div>
+<!-- ****************** -->
+
+
+        
+
+        <button class="btnprevnext" (click)="step2=true; step3=false">precedent</button>
+        <button class="btnprevnext" (click)="step3=false; step4=true">suivant</button> 
+        
+      </div>
+
+        
+      <div *ngIf="step4" class="blockContent">
+        <h2 class="titreH2">autres informations</h2>
+        
+        <div class="espaceV"></div>
+
+        <div>
+          <ion-label position="floating">quartier</ion-label>        
+          <ion-input class="champText" [(ngModel)]="locataire.quartier"  slot="center" name="quartier"></ion-input>
+        </div>
+
+        <div>
+          <ion-label position="floating">nombre d'enfant</ion-label>       
+          <ion-input type="number" class="champText" [(ngModel)]="locataire.nbEnfant"  slot="center" name="nbEnfant"></ion-input>
+        </div>
+
+        <!-- <div>
+          <ion-label position="floating">idBailleur</ion-label>        
+          <ion-input class="champText" [(ngModel)]="locataire.idBailleur"  slot="center" name="idBailleur"></ion-input>
+        </div>
+
+        <div>
+          <ion-label position="floating">idUtilisateurInitial</ion-label>        
+          <ion-input class="champText" [(ngModel)]="locataire.idUtilisateurInitial"  slot="center" name="idUtilisateurInitial"></ion-input>
+        </div> -->
+
+        <button class="btnprevnext" (click)="step3=true; step4=false">precedent</button>
+        <p>
+          <button class="btnvalider" (click)="verifierPassword()">Ajouter ce Locataire</button><br>
+        </p>
+      </div>
+
+        
+  </form>
+
+  <form *ngIf="formVerifPassword" class="blockContent">
+    <h2 class="titreH2">Vérification de sécurité</h2>
+    <div class="espaceV"></div>
+    <div>
+      <ion-label position="floating">Nom d'utilisateur*</ion-label>
+      <ion-input class="champText"  readonly name="login" ></ion-input>
+    </div>
+
+    <div>
+      <ion-label position="floating">Mot de Passe*</ion-label>
+      <ion-input class="champText"  name="password" type="password" ></ion-input>
+    </div>
+
+    <button class="btnprevnext" (click)="toggleForms()">retour</button>
+    <p>
+          <button class="btnvalider" (click)="verifierPassword()" size="small"> <strong> Valider</strong></button><br>
+    </p>
+  </form>
+</div>
+</ion-content>

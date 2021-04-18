@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="thebody gcel">
+      <div class="block-entete">
+        <div><img class="avatar-entete" src="assets/pp.jpg" alt=""></div>
+        <div class="the-left-side-entete">
+          <div class="the-top-entete">
+            <ion-title>Gcel</ion-title>
+            <div><ion-icon size='2' class="btnthredot" name="ellipsis-vertical"></ion-icon></div>
+          </div>
+          <div class="the-bottom-entete">
+            Immobilier
+          </div>
+        </div>
+      </div>
+
+      <div class="espaceY"></div>
+      <div *ngIf="!Locataires">
+        Aucun locataire trouvé
+      </div>
+    <div (click)="goToInfoLoc(Locataire)" class="ligne-prestataire" *ngFor="let Locataire of Locataires">
+      <div><img class="avatar" src="assets/pp.jpg" alt=""></div>
+      <div class="the-left-side">
+        <div class="the-top">
+          <div>{{Locataire.nom}}</div>
+          <ion-progress-bar color="primary" value="0.57789456"></ion-progress-bar>
+        </div>
+        <div></div>
+        <div class="the-bottom">
+          <div>95000 XAF</div>
+          <div>18 Mai</div>
+        </div>
+      </div>
+    </div>
+
+
+      <button (click)="goToAjoutLoc()" class="btnAddLoc">
+        <ion-icon class="iconAddLoc" name="add-sharp"></ion-icon>
+      </button>
+    <br>
+    <br>
+    <br>
+  <div>
+    Ajout de locataire possible. Gestion du dashboard en construction par nos dévéSlopeurs
+  </div>
+  </div>
+
+</ion-content>

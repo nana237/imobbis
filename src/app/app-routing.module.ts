@@ -107,6 +107,26 @@ const routes: Routes = [
   {
     path: 'inscription-prestataire',
     loadChildren: () => import('./utilisateur/inscription-prestataire/inscription-prestataire.module').then( m => m.InscriptionPrestatairePageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./gcel/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'gcel-locataire',
+    loadChildren: () => import('./gcel/gcel-locataire/gcel-locataire.module').then( m => m.GcelLocatairePageModule)
+  },
+  {
+    path: 'gcel-info-locataire',
+    loadChildren: () => import('./gcel/gcel-info-locataire/gcel-info-locataire.module').then( m => m.GcelInfoLocatairePageModule)
+  },
+  {
+    path: 'gcel-ajout-locataire',
+    loadChildren: () => import('./gcel/gcel-ajout-locataire/gcel-ajout-locataire.module').then( m => m.GcelAjoutLocatairePageModule)
+  },
+  {
+    path: 'gcel-ajout-contrat',
+    loadChildren: () => import('./gcel/gcel-ajout-contrat/gcel-ajout-contrat.module').then( m => m.GcelAjoutContratPageModule)
   }
 
 ];

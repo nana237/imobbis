@@ -12,6 +12,50 @@ export class ServicesService {
   
   private dataSource = new BehaviorSubject("hotboy");
   serviceData = this.dataSource.asObservable();
+  public infoUser;
+  public locataire= {
+    idLocataire:'',
+    nom:'',
+    prenom:'',
+    situationMatrimonial:'',
+    profession:'',
+    numCNI:'',
+    tel:'',
+    nationalite:'',
+    ville:'',
+    quartier:'',
+    nbEnfant:'',
+    idBailleur:'',
+    idUtilisateurInitial:'',
+    dataAjout:''
+  };
+  public modifLocataire = false;
+  public locataireSelectioner
+
+  setLocataire(locataire_){
+    this.locataire = locataire_
+    this.modifLocataire = true
+  }
+
+  resetLocataire(){
+    this.locataire = {
+      idLocataire:'',
+      nom:'',
+      prenom:'',
+      situationMatrimonial:'',
+      profession:'',
+      numCNI:'',
+      tel:'',
+      nationalite:'',
+      ville:'',
+      quartier:'',
+      nbEnfant:'',
+      idBailleur:'',
+      idUtilisateurInitial:'',
+      dataAjout:''
+    }
+    this.modifLocataire = false
+  }
 
   
   changeData(data: any) {
@@ -21,7 +65,7 @@ export class ServicesService {
   }
 
   getInfoUser(){
-    let infoUser = {
+    this.infoUser = {
       idUtilisateur:localStorage.getItem("idUser"),
       typeUtilisateur:localStorage.getItem("typeUser"),
       login:localStorage.getItem("loginUser"),
@@ -29,7 +73,7 @@ export class ServicesService {
       tel:localStorage.getItem("telUser"),
       pays:localStorage.getItem("paysUser")
     }
-    return infoUser
+    return this.infoUser
   }
 
   setInfoUser(data){
@@ -47,10 +91,20 @@ export class ServicesService {
  //https://blow-corporation.com/imobbis/appImobbisJSON/compte/creerCompte
 
   //https://blow-corporation.com/imobbis/appImobbisJSON/poste/poster
+
+  baseUrl = "https://blow-corporation.com/imobbis/"
+  baseUrlImg = "https://blow-corporation.com/imobbis/appImobbisJSON/"
+
   getAcceuil(){
 
-  return this.http.get<Prestataire[]>("https://blow-corporation.com/imobbis/appImobbisJSON/poste/getAllPoste_utilisateur");
+  return this.http.get<Prestataire[]>(this.baseUrl + "appImobbisJSON/poste/getAllPoste_utilisateur");
 
+}
+
+getAllPoste_Prestataire(data){
+  console.log('data')
+  console.log(data)
+  return this.http.post("https://blow-corporation.com/imobbis/appImobbisJSON/poste/getAllPoste_Prestataire", data);
 }
 
 postPost(data){
@@ -118,4 +172,40 @@ getAllcontries(){
   return this.http.get<Prestataire[]>("https://restcountries.eu/rest/v2/all");
 }
 
+getAllLocataireBailleur(data){
+  return this.http.post("https://blow-corporation.com/imobbis/appImobbisJSON/locataire/getAllLocataireBailleur", data);
+}
+
+getAllLocataire(data){
+  return this.http.get<Prestataire[]>(this.baseUrl + "appImobbisJSON/locataire/getAllLocataire", data);
+}
+
+creerLocataire(data){
+  return this.http.post(this.baseUrl + "appImobbisJSON/locataire/creerLocataire", data);
+}
+
+getAllContrat(data){
+  return this.http.get<Prestataire[]>(this.baseUrl + "appImobbisJSON/contrat/getAllContrat");
+}
+
+getAllContrateBailleur(data){
+  return this.http.get<Prestataire[]>(this.baseUrl + "appImobbisJSON/contrat/getAllContrateBailleur", data);
+}
+
+getAllContrateLocataire(data){
+  return this.http.post(this.baseUrl + "appImobbisJSON/contrat/getAllContrateLocataire", data);
+}
+
+creerContrat(data){
+  return this.http.post(this.baseUrl + "appImobbisJSON/contrat/creerContrat", data);
+}
+
+modifierContrat(data : any){
+
+  return this.http.post(this.baseUrl + "appImobbisJSON/compte/modifierContrat", data, {
+    reportProgress:true,
+    observe:'events'
+  });
+
+}
 }

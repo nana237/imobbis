@@ -1,0 +1,38 @@
+<ion-content class="content-info-loc">
+<div class="info-loc">
+
+  <div class="info-loc-header">
+    <div> <ion-buttons slot="start">
+        <ion-back-button defaultHref="dashboard"><ion-icon name="arrow-back"></ion-icon></ion-back-button>
+    </ion-buttons> <ion-title>Info locataire</ion-title></div>
+    <div><ion-icon size='2' class="btnthredot" name="ellipsis-vertical"></ion-icon></div>
+  </div>
+
+  <div class="block-entete-info-loc">
+  </div>
+  <div class="info-loc-perso">
+    <div>{{Locataire.nom}}</div>
+    <div>{{Locataire.prenom}}</div>
+    <div>{{Locataire.profession}}</div>
+    <div>ajouté le : {{Locataire.dataAjout}}</div>
+    <div>Prochain paiement 18 Mai</div>
+    <div class="info-loc-perso-tracbar"><ion-progress-bar color="primary" value="0.57789456"></ion-progress-bar></div>
+  </div>
+  <div class="bilanAnnuel">
+      <div class="verifPay"><div>Jan</div><div class="checkValidation"><ion-icon name="checkmark-done-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Fev</div><div class="checkValidation"><ion-icon name="checkmark-done-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Mar</div><div class="checkValidation"><ion-icon name="checkmark-done-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Avr</div><div class="checkValidation"><ion-icon name="checkmark-done-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Mai</div><div class="checkValidation"><ion-icon name="checkmark-done-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Jun</div><div class="checkValidation"><ion-icon name="checkmark-done-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Jul</div><div class="checkValidation"><ion-icon name="close-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Aut</div><div class="checkValidation"><ion-icon name="close-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Sep</div><div class="checkValidation"><ion-icon name="close-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Oct</div><div class="checkValidation"><ion-icon name="time-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Nov</div><div class="checkValidation"><ion-icon name="time-outline"></ion-icon></div></div>
+      <div class="verifPay"><div>Dec</div><div class="checkValidation"><ion-icon name="time-outline"></ion-icon></div></div>
+  </div>
+</div>
+
+<div class="info-loc-end">Gcel immobilier (en developement)</div>
+</ion-content>

@@ -1,0 +1,214 @@
+<ion-content class="ajout-loc">
+  <div>
+
+    <div class="mytoolbar">
+      <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard" icon="arrow-back"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Nouveau contrat</ion-title>
+  </div>
+
+
+  <p class="contentLogo">
+    <img src="../../assets/pp.jpg" class="logoimo" />
+  </p>
+  <form *ngIf="formPrincipale">
+    
+      
+      <div *ngIf="step1" class="blockContent">
+        <h2 class="titreH2">INFORMATION SUR LE CONTRAT</h2>
+
+        <!-- <div class="inputContent">
+          <ion-label >idcontrat</ion-label>
+          <ion-input class="champText" [(ngModel)]="contrat.idcontrat"  placeholder="idcontrat" readonly name="idcontrat" ></ion-input>
+        </div> -->
+
+        <div *ngIf="true" class="espaceV"></div>
+
+
+        <div *ngIf="false">
+          <ion-label  position="floating">idOp</ion-label>
+          <ion-select class="champSelect" interface="action-sheet" [(ngModel)]="contrat.idOp" name="idOp">
+            <ion-select-option value="Célibataire">Célibataire</ion-select-option>
+          </ion-select>
+        </div>
+        
+        <div>
+          <ion-label position="floating">Locataire</ion-label>
+          <ion-input *ngIf="take_.modifLocataire" class="champText" readonly value="{{take_.locataire.nom}} {{take_.locataire.prenom}}"   name="idLocataire" ></ion-input>
+          <ion-select *ngIf="!take_.modifLocataire" class="champSelect" interface="action-sheet" [(ngModel)]="locataireChoisi.idLocataire" name="idLocataire">
+            <ion-select-option  value="2">stef</ion-select-option>
+            <ion-select-option *ngFor="let locataire of locataires; let i = index" value="{{locataire.idLocataire}}">{{locataire.nom}} {{locataire.prenom}}</ion-select-option>
+          </ion-select>
+        </div>
+
+        
+        <div>
+          <ion-label position="floating">Bien Immobilier</ion-label>
+          <div class="bienImoChoisi"><span *ngIf="!bienImoChoisi">aucun bien immobilier trouvé</span><img *ngIf="bienImoChoisi" class="caseBienImoChoisi" src="{{take_.baseUrlImg}}{{bienImoChoisi.photo}}"></div>
+          <div class="bienImos">
+            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{take_.baseUrlImg}}{{bienImo.photo}}">
+            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{take_.baseUrlImg}}{{bienImo.photo}}">
+            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{take_.baseUrlImg}}{{bienImo.photo}}">
+          </div>
+          <!-- <ion-select class="champSelect" interface="action-sheet" [(ngModel)]="contrat.idBienImmobilier" name="idBienImmobilier">
+            <ion-select-option *ngFor="let bienImo of bienImos; let i = index" style="--background-image:url('../../assets/pp.jpg');" value="{{bienImo.idBienImmobilier}}"></ion-select-option>
+          </ion-select> -->
+        </div>
+
+        <!-- *********************** -->
+
+        
+        
+        <button class="btnprevnext" (click)="step1=false; step2=true">suivant</button>
+      </div>
+
+      <div *ngIf="step2" class="blockContent">
+
+        
+        <div class="inputContent">
+          <ion-label>libélé du Contrat</ion-label>
+          <ion-input class="champText" [(ngModel)]="contrat.libeleContrat"  name="libeleContrat" ></ion-input>
+        </div>
+
+        <div class="inputContent">
+          <ion-label>Type de Contrat</ion-label>
+          <ion-input *ngIf="false" class="champText" [(ngModel)]="contrat.typeContrat"  name="typeContrat" ></ion-input>
+          <ion-select *ngIf="true" class="champSelect" interface="action-sheet" [(ngModel)]="contrat.typeContrat" name="typeContrat">
+            <ion-select-option value="Achat">Achat</ion-select-option>
+            <ion-select-option value="Vente">Vente</ion-select-option>
+          </ion-select>
+        </div>
+        
+        <div>
+          <ion-label  position="floating">Prix (Fcfa)</ion-label>
+          <ion-input type="number" class="champText" [(ngModel)]="contrat.prix" class="champText" placeholder="prix"  name="prix"></ion-input>
+        </div>
+        <!-- ****************** -->
+        
+
+
+
+        <!-- <div *ngIf="false">
+          <div>
+            <ion-label position="floating">Nom de l'agence* :</ion-label>
+            <ion-input class="champText"  name="nomAgenceImo">
+            </ion-input>
+          </div>
+        </div> -->
+        <button class="btnprevnext" (click)="step1=true; step2=false">precedent</button>
+        <button class="btnprevnext" (click)="step2=false; step3=true">suivant</button>
+      </div>
+
+      <div *ngIf="step3" class="blockContent">
+        <h2 class="titreH2">DURÉE DU CONTRAT</h2>
+        <div class="espaceV"></div>
+        
+        
+
+        <div class="inputContent">
+          <ion-label position="floating">dateDebut</ion-label>        
+          <ion-datetime class="champText" [(ngModel)]="contrat.dateDebut" name="dateDebut" displayFormat="MM/DD/YYYY"></ion-datetime>
+      </div>
+      
+      <div class="inputContent">
+          <ion-label position="floating">dateFin</ion-label>        
+          <ion-datetime class="champText" [(ngModel)]="contrat.dateFin" name="dateFin" displayFormat="MM/DD/YYYY" [min]="minDate" [max]="maxDate" ></ion-datetime>
+      </div>
+<!-- ****************** -->
+
+
+        
+
+        <button class="btnprevnext" (click)="step2=true; step3=false">precedent</button>
+        <button class="btnprevnext" (click)="step3=false; step4=true">suivant</button> 
+        
+      </div>
+
+        
+      <div *ngIf="step4" class="blockContent">
+        <h2 class="titreH2">PAIEMENT</h2>
+        
+        <div class="espaceV"></div>
+
+        
+        <div>
+          <ion-label  position="floating">unité de Paiement (en jours)</ion-label>
+          <ion-input type="number" class="champText" [(ngModel)]="contrat.unitePaiment" class="champText" placeholder="unitePaiment"  name="unitePaiment"></ion-input>
+        </div>
+
+        
+        <div>
+          <ion-label  position="floating">nombre d'Unité Paiment (nombre initial de versement)</ion-label>
+          <ion-input type="number" class="champText" [(ngModel)]="contrat.nbUnitePaiment" class="champText" placeholder="nbUnitePaiment"  name="nbUnitePaiment"></ion-input>
+        </div>
+<!-- 
+        <div>
+          <ion-label position="floating">quartier</ion-label>        
+          <ion-input class="champText" [(ngModel)]="contrat.quartier"  slot="center" name="quartier"></ion-input>
+        </div>
+
+        <div>
+          <ion-label position="floating">nombre d'enfant</ion-label>       
+          <ion-input type="number" class="champText" [(ngModel)]="contrat.nbEnfant"  slot="center" name="nbEnfant"></ion-input>
+        </div> -->
+
+        <button class="btnprevnext" (click)="step3=true; step4=false">precedent</button>
+        <button class="btnprevnext" (click)="step4=false; step5=true">suivant</button>
+
+      </div>
+
+      <div *ngIf="step5" class="blockContent">
+        <h2 class="titreH2">AUTRES INFORMATIONS</h2>
+        
+        <div class="espaceV"></div>
+
+        <div>
+          <ion-label position="floating">eau (y compris dans les paiement ?)</ion-label>  
+          <ion-select interface="action-sheet" class="champText"  [(ngModel)]="contrat.eau" name="eau">
+              <ion-select-option value="oui">oui</ion-select-option>
+              <ion-select-option value="non">non</ion-select-option>
+          </ion-select>
+          <!-- <ion-input class="champText" [(ngModel)]="contrat.nationalite" type="text" name="nationalite"></ion-input> -->
+        </div>
+
+        
+        <div>
+          <ion-label position="floating">electricité (y compris dans les paiement ?)</ion-label>  
+          <ion-select interface="action-sheet" class="champText"  [(ngModel)]="contrat.electricite" name="electricite">
+              <ion-select-option value="oui">oui</ion-select-option>
+              <ion-select-option value="non">non</ion-select-option>
+          </ion-select>
+          <!-- <ion-input class="champText" [(ngModel)]="contrat.nationalite" type="text" name="nationalite"></ion-input> -->
+        </div>
+
+        <button class="btnprevnext" (click)="step4=true; step5=false">precedent</button>
+
+        <p>
+          <button class="btnvalider" (click)="verifierForm()">Ajouter ce contrat</button><br>
+        </p>
+      </div>
+
+        
+  </form>
+
+  <form *ngIf="formVerifPassword" class="blockContent">
+    <h2 class="titreH2">Vérification de sécurité</h2>
+    <div class="espaceV"></div>
+    <div>
+      <ion-label position="floating">Nom d'utilisateur*</ion-label>
+      <ion-input class="champText" [(ngModel)]="infoConnect.login" readonly name="login" ></ion-input>
+    </div>
+
+    <div>
+      <ion-label position="floating">Mot de Passe*</ion-label>
+      <ion-input class="champText" [(ngModel)]="infoConnect.password"  name="password" type="password" ></ion-input>
+    </div>
+
+    <button class="btnprevnext" (click)="toggleForms()">retour</button>
+    <p>
+          <button class="btnvalider" (click)="verifierPassword()" size="small"> <strong> Valider</strong></button><br>
+    </p>
+  </form>
+</div>
+</ion-content>

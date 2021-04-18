@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ServicesService } from './services.service';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Gcel Immobilier',
-      url: '',
+      url: '/dashboard',
       icon: 'aperture'
     },
     {
@@ -64,7 +65,8 @@ deconnexion(){
     private platform: Platform,
     private splashScreen: SplashScreen,
     private router: Router,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private take_: ServicesService
   ) {
    
     this.initializeApp();
@@ -87,6 +89,17 @@ deconnexion(){
   emailUser = localStorage.getItem('emailUser');
   typeUser= localStorage.getItem('typeUser');
 
+  ionViewWillEnter(){
+    let infoUser = this.take_.getInfoUser()
+     infoUser = this.take_.infoUser
+    this.telUser = infoUser.telUser
+    this.loginUser = infoUser.loginUser
+    this.emailUser = infoUser.emailUser
+   this.typeUser = infoUser.typeUser
+   console.log("on view will enter")
+   window.location.assign('/');
+  }
+
   ngOnInit() {
    // localStorage.clear();    
     const path = window.location.pathname.split('acceuil/')[1];
@@ -94,9 +107,9 @@ deconnexion(){
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
 
-    this.telUser = localStorage.getItem('telUser')
-    this.loginUser = localStorage.getItem('loginUser')
-    this.emailUser = localStorage.getItem('emailUser')
-   this.typeUser = localStorage.getItem('typeUser')
+     this.telUser = localStorage.getItem('telUser')
+     this.loginUser = localStorage.getItem('loginUser')
+     this.emailUser = localStorage.getItem('emailUser')
+     this.typeUser = localStorage.getItem('typeUser')
   }
 }

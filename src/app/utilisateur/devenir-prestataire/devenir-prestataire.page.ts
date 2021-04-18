@@ -225,8 +225,9 @@ connexion = {
         localStorage.setItem("emailUser", data[0].email); 
         localStorage.setItem("telUser", data[0].tel);    
         localStorage.setItem("paysUser", data[0].pays);    
-        //this.setInfoUser(data[0])     
-        this.router.navigate(['folder/1']); 
+        this.setInfoUser(data[0])     
+        //this.router.navigate(['folder/1']); 
+        window.location.assign('/');
   
       });
 
