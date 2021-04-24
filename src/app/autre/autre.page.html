@@ -14,10 +14,12 @@
 
     <div ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true" style="margin: 10px;">
       <ion-icon name="search"></ion-icon>
-    </div>
-    <div *ngIf="!isSearchbarOpened" routerLink="/post" style="margin: 8px;">
-      <ion-icon name="add-circle-outline"></ion-icon>
-    </div>
+   </div>
+   <div *ngIf="!isSearchbarOpened" routerLink="/post"  style="margin: 8px;">
+     <div *ngIf="typeUser != 'Client' && typeUser != 'client'">
+           <ion-icon name="add-circle-outline"></ion-icon>
+       </div>
+  </div>
 
   </ion-buttons>
 </ion-toolbar>

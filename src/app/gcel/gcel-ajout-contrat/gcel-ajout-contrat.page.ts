@@ -66,6 +66,24 @@ export class GcelAjoutContratPage implements OnInit {
   }
   minDate: string = new Date().toISOString()
   maxDate: any = (new Date()).getFullYear() + 100
+  locataire ={
+    idLocataire:'',
+    nom:'',
+    prenom:'',
+    situationMatrimonial:'',
+    profession:'',
+    numCNI:'',
+    tel:'',
+    nationalite:'',
+    ville:'',
+    quartier:'',
+    nbEnfant:'',
+    idBailleur:'',
+    idUtilisateurInitial:'',
+    dataAjout:''
+  }
+  baseUrlImg=''
+  modifLocataire=false
   step = 1
   step1 = true
   step2 = false
@@ -76,7 +94,7 @@ export class GcelAjoutContratPage implements OnInit {
   constructor(
     private take_:ServicesService,
     private toastController:ToastController,
-    private router:Router
+    public router:Router
   ) {
     this.infoUser=this.take_.getInfoUser()
     this.infoConnect.login=this.infoUser.login
@@ -86,6 +104,11 @@ export class GcelAjoutContratPage implements OnInit {
       // this.locataireChoisi.idLocataire=this.take_.locataire.idLocataire
       // this.locataireChoisi.nom=this.take_.locataire.nom
       // this.locataireChoisi.prenom=this.take_.locataire.prenom
+    }
+    if (this.take_.modifLocataire) {
+      this.modifLocataire = true
+      this.baseUrlImg = this.take_.baseUrlImg
+      this.locataire = this.take_.locataire
     }
     this.getBienImo()
     this.getLocataire()

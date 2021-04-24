@@ -1,7 +1,7 @@
 {
-  "name": "IMMOBIS",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
+  "name": "IMOBBIS",
+  "version": "0.0.7",
+  "author": "Blow Corporation",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",

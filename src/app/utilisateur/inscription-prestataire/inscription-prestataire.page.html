@@ -1,114 +1,148 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="folder/Inbox" icon="arrow-back"></ion-back-button>
+      <ion-back-button defaultHref="connexion" icon="arrow-back"></ion-back-button>
     </ion-buttons>
-    <ion-title>S'inscrire prestataire</ion-title>
+    <ion-title>S'inscrire en tant que prestataire</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <form (ngSubmit)="logForm()">
-    <ion-card>
-      <p>
-        <img src="../../assets/pp.jpg" style="width: 30%; height: 30%; margin-left: 37%; margin-right: 50%;" />
-      </p>
-      <ion-card-content>
+    <p>
+      <img src="../../assets/pp.jpg"
+        style="width: 30%; height: 30%; margin-left: 37%; margin-right: 50%;" />
+    </p>
+    <ion-grid class="grid1">
 
+      <ion-row class="row1">
+        <ion-col>
 
-        <ion-item>
-          <ion-label position="floating">Pays* :</ion-label>
-          <ion-select [(ngModel)]="demande.pays" name="pays">
-            <div *ngFor="let pay of contry"> 
-              <ion-select-option value="{{pay.name}}">{{pay.name}}</ion-select-option>
-             
-            </div>
-          </ion-select>
-        </ion-item>
+        </ion-col>
+      </ion-row>
 
+      <ion-row class="row2">
+        <ion-col>
 
-        <ion-item>
-          <ion-label position="floating">Nom* :</ion-label>
-          <ion-input aria-placeholder="" [(ngModel)]="demande.nom" name="nom"></ion-input>
-        </ion-item>
+        </ion-col>
+      </ion-row>
 
-        <ion-item>
-          <ion-label position="floating">Prénom* :</ion-label>  
-          <ion-input aria-placeholder="" [(ngModel)]="demande.prenom" name="prenom">
-          </ion-input>
-        </ion-item>
+    </ion-grid>
 
-        <ion-item>
-          <ion-label position="floating">Genre :</ion-label>
-          <ion-select [(ngModel)]="demande.sexe" name="sexe">
-            <ion-select-option value="m">Masculin</ion-select-option>
-            <ion-select-option value="f">Féminin</ion-select-option>
-          </ion-select>
-        </ion-item>
- 
-        <ion-item>
-          <ion-label position="floating">Année de naissance</ion-label>        
-          <ion-datetime [(ngModel)]="demande.dateNaiss" name="dateNaiss" displayFormat="MM/DD/YYYY"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Type :</ion-label>
-          <ion-select [(ngModel)]="demande.typeUtilisateur" name="typeUtilisateur">
-            <ion-select-option value="Bailleur">Bailleur</ion-select-option>
-            <ion-select-option value="Agent Immobilier">Agent immobilier</ion-select-option>
-            <ion-select-option text-wrap value="Agence Immobilière">Agence immobilière</ion-select-option>
-          </ion-select>
-        </ion-item>
-
-        <div *ngIf="demande.typeUtilisateur == 'Agence Immobilière'">
-          <ion-item>
-            <ion-label position="floating">Nom de l'agence* :</ion-label>
-            <ion-input [(ngModel)]="demande.nomAgenceImo" name="nomAgenceImo">
-            </ion-input>
-          </ion-item>
-        </div>
-
-        <ion-item>
-          <ion-label position="floating">E-mail* :</ion-label>  
-          <ion-input type="email" [(ngModel)]="demande.email" name="email"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Téléphone* :</ion-label>
-          <ion-input  type="number" [(ngModel)]="demande.tel" name="tel" ></ion-input>
-        </ion-item>
-
-
-
-         <ion-item>
-          <ion-label position="floating">Nom d'utilisateur* :</ion-label>
-          <ion-input [(ngModel)]="demande.login" name="login" ></ion-input>
-        </ion-item>
-
-
-        <ion-item>
-          <ion-label position="floating">Mot de passe* :</ion-label>
-          <ion-input type="password" [(ngModel)]="demande.password" name="password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Confirmer le mot de passe*:</ion-label>
-          <ion-input type="password" [(ngModel)]="demande.password2" name="password2"></ion-input>
-        </ion-item>
-        <p>
-          <ion-button (click)="logForm()" size="small"> <strong> S'inscrire prestataire</strong></ion-button><br>
+    <ion-slide>
+      <div class="contaier-login">
+        <ion-grid>
           <ion-row>
-            <ion-col width-50 style="text-align: center; color:#7c3325;">
-              <button type="submit" color="secondary" routerLink="/connexion" ion-button type="submit">
-                Se connecter
-              </button>
+            <ion-col>
+              <ion-list>
+              
+              
+
+                <ion-item>
+                  <ion-label position="floating">Pays* :</ion-label>
+                  <ion-select [(ngModel)]="demande.pays" name="pays">
+                    <div *ngFor="let pay of contry">
+                      <ion-select-option value="{{pay.name}}">{{pay.name}}</ion-select-option>
+
+                    </div>
+                  </ion-select>
+                </ion-item>
+
+
+                <ion-item>
+                  <ion-label position="floating">Nom* :</ion-label>
+                  <ion-input aria-placeholder="" [(ngModel)]="demande.nom" name="nom"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Prénom* :</ion-label>
+                  <ion-input aria-placeholder="" [(ngModel)]="demande.prenom" name="prenom">
+                  </ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Genre :</ion-label>
+                  <ion-select [(ngModel)]="demande.sexe" name="sexe">
+                    <ion-select-option value="m">Masculin</ion-select-option>
+                    <ion-select-option value="f">Féminin</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Année de naissance</ion-label>
+                  <ion-datetime [(ngModel)]="demande.dateNaiss" name="dateNaiss" displayFormat="MM/DD/YYYY">
+                  </ion-datetime>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Type :</ion-label>
+                  <ion-select [(ngModel)]="demande.typeUtilisateur" name="typeUtilisateur">
+                    <ion-select-option value="Bailleur">Bailleur</ion-select-option>
+                    <ion-select-option value="Agent Immobilier">Agent immobilier</ion-select-option>
+                    <ion-select-option text-wrap value="Agence Immobilière">Agence immobilière</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <div *ngIf="demande.typeUtilisateur == 'Agence Immobilière'">
+                  <ion-item>
+                    <ion-label position="floating">Nom de l'agence* :</ion-label>
+                    <ion-input [(ngModel)]="demande.nomAgenceImo" name="nomAgenceImo">
+                    </ion-input>
+                  </ion-item>
+                </div>
+
+                <ion-item>
+                  <ion-label position="floating">E-mail* :</ion-label>
+                  <ion-input type="email" [(ngModel)]="demande.email" name="email"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Téléphone* :</ion-label>
+                  <ion-input type="number" [(ngModel)]="demande.tel" name="tel"></ion-input>
+                </ion-item>
+
+
+
+                <ion-item>
+                  <ion-label position="floating">Nom d'utilisateur* :</ion-label>
+                  <ion-input [(ngModel)]="demande.login" name="login"></ion-input>
+                </ion-item>
+
+
+                <ion-item>
+                  <ion-label position="floating">Mot de passe* :</ion-label>
+                  <ion-input type="password" [(ngModel)]="demande.password" name="password"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Confirmer le mot de passe*:</ion-label>
+                  <ion-input type="password" [(ngModel)]="demande.password2" name="password2"></ion-input>
+                </ion-item>
+
+              </ion-list>
             </ion-col>
           </ion-row>
-        </p>
-        
-      </ion-card-content>
-    </ion-card>
+
+          <ion-button (click)="logForm()" type="submit">
+            S'inscrire comme prestataire
+          </ion-button>
+
+
+          <ion-row>
+            <ion-col>
+
+              <a routerLink="/connexion" style="text-align: center; color:  #7c3325;">
+                Se Connecter
+              </a>
+
+
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </div>
+    </ion-slide>
   </form>
 
 </ion-content>

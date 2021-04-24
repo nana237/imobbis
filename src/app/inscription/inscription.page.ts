@@ -5,6 +5,7 @@ import { ServicesService } from '../services.service';
 import { HttpClient } from '@angular/common/http';
 import { FormArray, FormGroup } from '@angular/forms';
 import { Prestataire } from '../prestataire';
+
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.page.html',
@@ -57,7 +58,7 @@ connexion = {
   ngOnInit() {
 
 
-    this.take_.getAllcontries().subscribe((data: Prestataire[]) => {    
+  this.take_.getAllcontries().subscribe((data: Prestataire[]) => {    
    this.contry = data;
    console.log(this.contry)
    },
@@ -66,7 +67,7 @@ connexion = {
    }
    );
    
-    this.menu.swipeGesture(false)
+    //this.menu.swipeGesture(false)
 
 
   }
@@ -103,17 +104,16 @@ connexion = {
       console.log('ici');
       this.take_.Seconnecter(upload).subscribe((data: any) => {    
     
-        console.log(data);
-        console.log('data[0]');
-        console.log(data[0]);
-        console.log('la');
+        //console.log(data);
+        //console.log('la');  
         localStorage.clear();                   
         localStorage.removeItem("idUser");
         localStorage.setItem("idUser", data[0].idUtilisateur);
         localStorage.setItem("typeUser", data[0].typeUtilisateur);
         localStorage.setItem("loginUser", data[0].login);
         localStorage.setItem("emailUser", data[0].email); 
-        localStorage.setItem("telUser", data[0].tel);      
+        localStorage.setItem("telUser", data[0].tel);
+        localStorage.setItem("paysUser", data[0].pays);       
        this.router.navigate(['folder/1']); 
   
       });
@@ -138,9 +138,9 @@ connexion = {
       localStorage.setItem("idUser", data[0].idUtilisateur);
       localStorage.setItem("typeUser", data[0].typeUtilisateur);
       localStorage.setItem("loginUser", data[0].login);
-      localStorage.setItem("emailUser", data[0].email);
-      localStorage.setItem("telUser", data[0].tel);
-      localStorage.setItem("paysUser", data[0].pays);
+      localStorage.setItem("emailUser", data[0].email); 
+      localStorage.setItem("telUser", data[0].tel); 
+      localStorage.setItem("paysUser", data[0].pays);       
       this.router.navigate(['folder/1']); 
 
     });  

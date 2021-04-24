@@ -1,45 +1,84 @@
 
-
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Inscription</ion-title>
+    <ion-title>Connexion</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 
 <ion-content>
-
-
-
   <form (ngSubmit)="logForm()">
-    <ion-card>
       <p>
         <img src="../../assets/pp.jpg" style="width: 30%; height: 30%; margin-left: 37%; margin-right: 50%;" />
       </p>
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Nom d'utilisateur* :</ion-label>
-          <ion-input [(ngModel)]="demande.login" name="login"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Mot de passe* :</ion-label>
-          <ion-input [(ngModel)]="demande.password" name="password" type="password"></ion-input>
-        </ion-item>
-        <p>
-          <ion-button (click)="logForm()" size="small"> <strong> Se connecter</strong></ion-button><br>
-          <ion-row>
-            <ion-col width-50 style="text-align: center; color:#7c3325;">
-              <button color="secondary" routerLink="/inscription" ion-button type="submit">
-                S'inscrire
-              </button>
+      
+    <ion-grid class="grid1">
+    
+        <ion-row class="row1">
+            <ion-col>
+    
             </ion-col>
-          </ion-row>
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </form>
+        </ion-row>
+    
+        <ion-row class="row2">
+            <ion-col>
+    
+            </ion-col>
+        </ion-row>
+    
+    </ion-grid>
+    
+    <ion-slide>
+        <div class="contaier-login">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <h1>Se Connecter</h1>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-list>
+    
+                            <ion-item>
+                                <ion-icon name="person" class="icon-login"></ion-icon>
+                                
+                                <ion-input [(ngModel)]="demande.login" name="user" type="text" required placeholder="Nom d'utilisateur*"></ion-input>
+                            </ion-item>
+                            <br />
+                            <ion-item>
+                                <ion-icon name="key" class="icon-login"></ion-icon>
+                                <ion-input [(ngModel)]="demande.password" name="password" type="password" required placeholder="Mot de passe* "></ion-input>
+                            </ion-item>
+    
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-button (click)="logForm()" type="submit" fill="solid" expand="full">
+                           <h2>Se Connecter</h2> 
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-label>
+                            <h2 color="secondary">Vous n'avez pas de compte ? </h2>
+                            <br>
 
+                            <strong><a routerLink="/inscription"  style="text-align: center; color:  #7c3325;">Inscrivez-vous maintenant !</a></strong>
+                            <br><br> 
+                            <strong><a routerLink="/inscription"  style="text-align: center; color:  #7c3325;">Mot de passe oublier !</a></strong>
+                            <br><br>
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </ion-slide>
+  </form>
 
 </ion-content>
 

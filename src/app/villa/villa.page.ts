@@ -26,7 +26,10 @@ export class VillaPage implements OnInit {
     sms:any [];
  
     idUser = localStorage.getItem('idUser');
-   typeUser = localStorage.getItem('typeUser');
+    typeUser = localStorage.getItem('typeUser');
+    othercountry:any [];
+    paysUser= localStorage.getItem('paysUser');
+
 
   ngOnInit() {
 
@@ -34,6 +37,12 @@ export class VillaPage implements OnInit {
       this.take_.getAcceuil().subscribe((data: any[]) => {
 
       this.pre = data.filter((value)=>{ return (value.type_immobilier == "villa" && value.meubler == 0)});
+      
+      this.pre = data.filter((value)=>{return( value.pays == this.paysUser)})
+      this.othercountry = data.filter((value)=>{ return (value.pays != this.paysUser)})
+  
+      this.othercountry.map(pre_ =>{ this.pre.push(pre_)})
+       
       this.initial = this.pre;
 
     },

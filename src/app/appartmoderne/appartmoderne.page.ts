@@ -24,11 +24,23 @@ export class AppartmodernePage implements OnInit {
     images: any[];
     users: any[];
     sms:any [];
+
+    othercountry:any [];
+    paysUser= localStorage.getItem('paysUser');
+ 
     ngOnInit() {
 
     this.take_.getAcceuil().subscribe((data: any[]) => {
       console.log("appart1 "+data)
-      this.pre = data.filter((value)=>{ return( value.type_immobilier == "appartement" && value.meubler == 1)});
+      data = data.filter((value)=>{ return( value.type_immobilier == "appartement" && value.meubler == 1)});
+      this.pre = data.filter((value)=>{return( value.pays == this.paysUser)})
+      this.othercountry = data.filter((value)=>{ return (value.pays != this.paysUser)})
+  
+      this.othercountry.map(pre_ =>{ this.pre.push(pre_)})
+       
+      
+      
+      
       this.initial = this.pre;
       
     },

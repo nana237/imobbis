@@ -3,73 +3,116 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="folder/Inbox" icon="arrow-back"></ion-back-button>
     </ion-buttons>
-    <ion-title>S'inscrire utilisateur</ion-title>
+    <ion-title>S'inscrire</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <form (ngSubmit)="logForm()">
-    <ion-card>
-      <p>
-        <img src="../../assets/pp.jpg" style="width: 30%; height: 30%; margin-left: 37%; margin-right: 50%;" />
-      </p>
-      <ion-card-content>
+    <p>
+      <img src="../../assets/pp.jpg" style="width: 30%; height: 30%; margin-left: 37%; margin-right: 50%;" />
 
-
-       <ion-item>
-          <ion-label position="floating">Pays* :</ion-label>
-          <ion-select [(ngModel)]="demande.pays" name="pays">
-            <div *ngFor="let pay of contry"> 
-              <ion-select-option value="{{pay.name}}">{{pay.name}}</ion-select-option>
-            
-            </div>
-          </ion-select>
-        </ion-item>
-
-
-        <ion-item>
-          <ion-label position="floating">Nom d'utilisateur* :</ion-label>
-          <ion-input  color="secondary" [(ngModel)]="demande.login" name="login"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Téléphone* :</ion-label>
-          <ion-input  color="secondary" [(ngModel)]="demande.tel" name="tel" type="number"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Mot de passe :</ion-label>
-          <ion-input [(ngModel)]="demande.password" name="password" type="password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Confirmer le mot de passe:</ion-label>
-          <ion-input [(ngModel)]="demande.password2" name="password2" type="password"></ion-input>
-        </ion-item>
+    </p>
 
 
 
+    <ion-grid class="grid1">
 
-        <p>
+      <ion-row class="row1">
+        <ion-col>
 
-          <ion-button (click)="logForm()" size="small"> <strong> S'inscrire</strong></ion-button><br>
+        </ion-col>
+      </ion-row>
 
+      <ion-row class="row2">
+        <ion-col>
+
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-slide>
+      <div class="contaier-login">
+        <ion-grid>
           <ion-row>
-            <ion-col color="secondary" width-50 style="text-align: center; color:#7c3325;">
-              <button color="secondary" routerLink="/connexion" ion-button type="submit">
-                Se connecter
-              </button>
-            </ion-col>
-            <ion-col color="secondary" routerLink="/compte">
-              devenir prestataire ?
+            <ion-col>
+              <ion-list>
+
+                <ion-item>
+                  <ion-label position="floating">Pays* :</ion-label>
+                  <ion-select [(ngModel)]="demande.pays" name="pays">
+                    <div *ngFor="let pay of contry">
+                      <ion-select-option value="{{pay.name}}">{{pay.name}}</ion-select-option>
+
+                    </div>
+                  </ion-select>
+                </ion-item>
+
+
+                <ion-item>
+                  <ion-label position="floating">Nom d'utilisateur* :</ion-label>
+                  <ion-input color="secondary" [(ngModel)]="demande.login" name="login"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Téléphone* :</ion-label>
+                  <ion-input color="secondary" [(ngModel)]="demande.tel" name="tel" type="number"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Mot de passe :</ion-label>
+                  <ion-input [(ngModel)]="demande.password" name="password" type="password"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Confirmer le mot de passe:</ion-label>
+                  <ion-input [(ngModel)]="demande.password2" name="password2" type="password"></ion-input>
+                </ion-item>
+
+              </ion-list>
             </ion-col>
           </ion-row>
-          
-        </p>
 
-      </ion-card-content>
-    </ion-card>
+
+          <ion-row>
+            <ion-col>
+
+
+              <ion-button (click)="logForm()" type="submit" fill="solid" expand="full">
+                <h3>S'inscrire</h3>
+              </ion-button>
+
+            </ion-col>
+          </ion-row>
+
+
+         
+           
+              <ion-row>
+                <a routerLink="/connexion"   style="text-align: center; color:  #7c3325;">
+                  Se connecter
+                </a>
+              </ion-row>
+              <ion-col>
+                <a routerLink="/inscription-prestataire"  style="text-align: center; color:  #7c3325;">
+                  devenir prestataire ?
+                </a>
+              </ion-col>
+           
+          
+
+
+
+
+        </ion-grid>
+      </div>
+    </ion-slide>
+
   </form>
+
+
+
 
 </ion-content>

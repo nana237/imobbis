@@ -26,13 +26,21 @@ export class StudioMeublePage implements OnInit {
   idUser = localStorage.getItem('idUser');
   typeUser = localStorage.getItem('typeUser');
 
+  othercountry:any [];
+  paysUser= localStorage.getItem('paysUser');
 
   ngOnInit() {
 
 
     this.take_.getAcceuil().subscribe((data: any[]) => {
       console.log("data " + data)
-      this.pre = data.filter((value) => { return (value.type_immobilier == 'studio' && value.meubler == 1) });
+      data = data.filter((value) => { return (value.type_immobilier == 'studio' && value.meubler == 1) });
+      this.pre = data.filter((value)=>{return( value.pays == this.paysUser)})
+      this.othercountry = data.filter((value)=>{ return (value.pays != this.paysUser)})
+  
+      this.othercountry.map(pre_ =>{ this.pre.push(pre_)})
+       
+      
       this.initial = this.pre;
       console.log("stud " + this.pre)
     },

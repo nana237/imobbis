@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController, LoadingController } from '@ionic/angular';
+import { MenuController, LoadingController, Platform } from '@ionic/angular';
 import { ServicesService } from '../services.service';
 import { HttpClient } from '@angular/common/http';
 import { FormArray, FormGroup } from '@angular/forms';
@@ -11,6 +11,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 })
 export class ConnexionPage implements OnInit {
   public valide: boolean = true;
+  subscribe: any;
   constructor(
 
     private load:LoadingController,
@@ -18,13 +19,20 @@ export class ConnexionPage implements OnInit {
     private menu: MenuController,
     private http: HttpClient,
     private take_: ServicesService,
-
+    public platform:Platform
     ) {
+      this.subscribe = this.platform.backButton.subscribeWithPriority(999999,()=>{
+        if (this.constructor.name == "FolderPage") {
+          if (window.confirm("êtes vous sur de vouloir quitter IMOBBIS ?")) {
+            navigator["app"].exitApp();
+          }
+        }
+      })
+
     this.envoie()
 
      
   }
-
 
   
   envoie(){
@@ -45,8 +53,7 @@ export class ConnexionPage implements OnInit {
 
   ngOnInit() {
       
-    this.menu.swipeGesture(false);
-
+    //this.menu.swipeGesture(false);
 
      if(localStorage.getItem('idUser') !=null && localStorage.getItem('typeUser') != null){                         
               
@@ -81,9 +88,15 @@ export class ConnexionPage implements OnInit {
     }
          
       this.take_.Seconnecter(uploadData).subscribe((data: any) => {    
-      localStorage.clear();                   
+      localStorage.clear(); 
+                  
       localStorage.removeItem("idUser");
-      this.take_.setInfoUser(data[0])  
+      localStorage.setItem("idUser", data[0].idUtilisateur);
+      localStorage.setItem("typeUser", data[0].typeUtilisateur);
+      localStorage.setItem("loginUser", data[0].login);
+      localStorage.setItem("emailUser", data[0].email); 
+      localStorage.setItem("telUser", data[0].tel);
+      localStorage.setItem("paysUser", data[0].pays);        
       this.router.navigate(['folder/1']); 
 
     },

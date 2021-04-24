@@ -19,12 +19,24 @@ export class AutrePage implements OnInit {
     pre:Prestataire[];
     initial:any[];
 
+    othercountry:any [];
+    paysUser= localStorage.getItem('paysUser');
+    typeUser = localStorage.getItem('typeUser');
+
   ngOnInit() {
 
     
     this.take_.getAcceuil().subscribe((data: any[]) => {
 
-      this.pre = data.filter((value)=>{ return value.type_immobilier == "autres"});
+     data = data.filter((value)=>{ return value.type_immobilier == "autres"});
+      
+     this.pre = data.filter((value)=>{return( value.pays == this.paysUser)})
+     this.othercountry = data.filter((value)=>{ return (value.pays != this.paysUser)})
+  
+     this.othercountry.map(pre_ =>{ this.pre.push(pre_)})
+       
+      
+      
       this.initial = this.pre;
 
       console.log("autres "+ this.pre)

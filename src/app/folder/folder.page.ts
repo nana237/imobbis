@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, Platform } from '@ionic/angular';
 //import { PopoverController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { ServicesService } from '../services.service';
@@ -19,6 +19,7 @@ export class FolderPage implements OnInit {
   public width = screen.width;
   public height = screen.height;
   public isSearchbarOpened: boolean = false;
+  subscribe: any;
 
 
   slideOpt = {
@@ -126,32 +127,47 @@ export class FolderPage implements OnInit {
   }
 }
   constructor(
-
-    private activatedRoute: ActivatedRoute,
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
     private take_: ServicesService,
     //private sms: SMS,
-    private callNumber:CallNumber
-  ) { }
+    private callNumber:CallNumber,
+    public platform:Platform
+  ) { 
+    this.subscribe = this.platform.backButton.subscribeWithPriority(999999,()=>{
+      if (this.constructor.name == "FolderPage") {
+        if (window.confirm("êtes vous sur de vouloir quitter IMOBBIS ?")) {
+          navigator["app"].exitApp();
+        }
+      }
+    })
+  }
 
    pre: any[];
    images: any[];
    users: any[];
    sms:any [];
 
+   mecountry: any[];
+   othercountry:any [];
+   paysUser= localStorage.getItem('paysUser');
+
   ngOnInit() {
     //this.folder = this.activatedRoute.snapshot.paramMap.get('id');
-    this.take_.getAcceuil().subscribe((data: Prestataire[]) => {
-     console.log(data);
-      this.pre = data;
+    this.take_.getAcceuil().subscribe((data: any[]) => {
+      console.log(data);
+      this.pre = data.filter((value)=>{return( value.pays == this.paysUser)})
+      this.othercountry = data.filter((value)=>{ return (value.pays != this.paysUser)})
+  
+      this.othercountry.map(pre_ =>{ this.pre.push(pre_)})
       this.initial = data;
+      
     },
     error => {
       alert("Mauvaise connexion!!!");
     }
     );
-
+    console.log(this.paysUser)
     this.take_.getToff().subscribe((data: Prestataire[]) => {    
       this.images = data;
       console.log(this.images)    
@@ -160,6 +176,7 @@ export class FolderPage implements OnInit {
        alert("Mauvaise connexion!!!");
      }
      );
+
      this.take_.getAllUser().subscribe((data: any[]) => {
       this.users = data;
     
@@ -209,10 +226,6 @@ export class FolderPage implements OnInit {
     }
     return [...new Set(number)];
 
-  }
-
-  liker(){
-    console.log("j'ai liker")
   }
 
    joindreToff ( image:any, id : any, imagess:any []){

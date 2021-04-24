@@ -127,6 +127,10 @@ const routes: Routes = [
   {
     path: 'gcel-ajout-contrat',
     loadChildren: () => import('./gcel/gcel-ajout-contrat/gcel-ajout-contrat.module').then( m => m.GcelAjoutContratPageModule)
+  },
+  {
+    path: 'dashboard-specialiste',
+    loadChildren: () => import('./specialiste/dashboard-specialiste/dashboard-specialiste.module').then( m => m.DashboardSpecialistePageModule)
   }
 
 ];

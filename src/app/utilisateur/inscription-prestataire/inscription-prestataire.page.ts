@@ -13,7 +13,6 @@ import { HttpClient } from '@angular/common/http';
 export class InscriptionPrestatairePage implements OnInit {
   public isSearchbarOpened : boolean = false;
   
-
   demande = {
     nom:'',
     prenom:'',  
@@ -38,6 +37,7 @@ export class InscriptionPrestatairePage implements OnInit {
 
 };
 
+
 connexion = {
 
   login: '',
@@ -48,21 +48,29 @@ connexion = {
     private router:Router,
     private menu: MenuController,
     private http:HttpClient,
-    private take_: ServicesService,) { }
+    private take_: ServicesService,
+
+    ) {
+      
+    }
+
 
     contry:any[];
 
   ngOnInit() {
-    this.take_.getAllcontries().subscribe((data: Prestataire[]) => {    
-      this.contry = data;
-      console.log(this.contry)
-      },
-      error => {
-        alert("Mauvaise connexion!!!");
-      }
-      );
-       this.menu.swipeGesture(false) 
+
+  this.take_.getAllcontries().subscribe((data: Prestataire[]) => {    
+   this.contry = data;
+   console.log(this.contry)
+   },
+   error => {
+     alert("Mauvaise connexion!!!");
+   }
+   );
+    this.menu.swipeGesture(false) 
+
   }
+
 
   logForm(){
    
@@ -105,7 +113,8 @@ connexion = {
         localStorage.setItem("typeUser", data[0].typeUtilisateur);
         localStorage.setItem("loginUser", data[0].login);
         localStorage.setItem("emailUser", data[0].email); 
-        localStorage.setItem("telUser", data[0].tel);      
+        localStorage.setItem("telUser", data[0].tel);
+        localStorage.setItem("paysUser", data[0].pays);        
         this.router.navigate(['folder/1']); 
   
       });
@@ -119,5 +128,6 @@ connexion = {
   }
   
 }
+  
 
 }

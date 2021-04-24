@@ -35,8 +35,8 @@
         
         <div>
           <ion-label position="floating">Locataire</ion-label>
-          <ion-input *ngIf="take_.modifLocataire" class="champText" readonly value="{{take_.locataire.nom}} {{take_.locataire.prenom}}"   name="idLocataire" ></ion-input>
-          <ion-select *ngIf="!take_.modifLocataire" class="champSelect" interface="action-sheet" [(ngModel)]="locataireChoisi.idLocataire" name="idLocataire">
+          <ion-input *ngIf="modifLocataire" class="champText" readonly value="{{locataire.nom}} {{locataire.prenom}}"   name="idLocataire" ></ion-input>
+          <ion-select *ngIf="!modifLocataire" class="champSelect" interface="action-sheet" [(ngModel)]="locataireChoisi.idLocataire" name="idLocataire">
             <ion-select-option  value="2">stef</ion-select-option>
             <ion-select-option *ngFor="let locataire of locataires; let i = index" value="{{locataire.idLocataire}}">{{locataire.nom}} {{locataire.prenom}}</ion-select-option>
           </ion-select>
@@ -45,11 +45,11 @@
         
         <div>
           <ion-label position="floating">Bien Immobilier</ion-label>
-          <div class="bienImoChoisi"><span *ngIf="!bienImoChoisi">aucun bien immobilier trouvé</span><img *ngIf="bienImoChoisi" class="caseBienImoChoisi" src="{{take_.baseUrlImg}}{{bienImoChoisi.photo}}"></div>
+          <div class="bienImoChoisi"><span *ngIf="!bienImoChoisi">aucun bien immobilier trouvé</span><img *ngIf="bienImoChoisi" class="caseBienImoChoisi" src="{{baseUrlImg}}{{bienImoChoisi.photo}}"></div>
           <div class="bienImos">
-            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{take_.baseUrlImg}}{{bienImo.photo}}">
-            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{take_.baseUrlImg}}{{bienImo.photo}}">
-            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{take_.baseUrlImg}}{{bienImo.photo}}">
+            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{baseUrlImg}}{{bienImo.photo}}">
+            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{baseUrlImg}}{{bienImo.photo}}">
+            <img *ngFor="let bienImo of bienImos; let i = index" (click)="onChangeBienImoChoisi(bienImo)" class="caseBienImo" src="{{baseUrlImg}}{{bienImo.photo}}">
           </div>
           <!-- <ion-select class="champSelect" interface="action-sheet" [(ngModel)]="contrat.idBienImmobilier" name="idBienImmobilier">
             <ion-select-option *ngFor="let bienImo of bienImos; let i = index" style="--background-image:url('../../assets/pp.jpg');" value="{{bienImo.idBienImmobilier}}"></ion-select-option>
